@@ -1,5 +1,6 @@
 """ A simple FFXIV keyboard based crafting bot """
 
+import send_key
 from ffxiv_2 import *
 
 def send_key(spell):
@@ -26,8 +27,9 @@ def craft(rotation, count = 1, collectable = False):
 
         for spell in rotation:
             step += 1
-            print(f". . . Step {step} of {len(rotation)}: {spell.__name__}")
-            SendKey(spell)
+            print(f". . . Step {step} of {len(rotation)}: {spell[3]}")
+            send_key(spell)
+            time.sleep(spell[2])
 
         print(f". . . Crafting {count - remaining} of {count} complete!")
 
@@ -49,12 +51,12 @@ if __name__ == "__main__":
     selection = int(input("Select macro >>> "))
     iterations = int(input("Number to craft >>> "))
 
-    print("Starting in 3 . . .")
-    time.sleep(1)
-    print("2 . . .")
-    time.sleep(1)
-    print("1 . . .")
-    time.sleep(1)
+    # print("Starting in 3 . . .")
+    # time.sleep(1)
+    # print("2 . . .")
+    # time.sleep(1)
+    # print("1 . . .")
+    # time.sleep(1)
 
     rotation = macros[list(macros)[selection]]
 
