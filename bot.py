@@ -1,6 +1,19 @@
 """ A simple FFXIV keyboard based crafting bot """
 
-from ffxiv import *
+from ffxiv_2 import *
+
+def send_key(spell):
+    if spell[1]:
+        PressKey(spell[1])
+        time.sleep(.05)
+
+    PressKey(spell[0])
+    time.sleep(.05)
+    ReleaseKey(spell[0])
+
+    if spell[1]:
+        time.sleep(.05)
+        ReleaseKey(spell[1])
 
 
 def craft(rotation, count = 1, collectable = False):
@@ -14,7 +27,7 @@ def craft(rotation, count = 1, collectable = False):
         for spell in rotation:
             step += 1
             print(f". . . Step {step} of {len(rotation)}: {spell.__name__}")
-            spell()
+            SendKey(spell)
 
         print(f". . . Crafting {count - remaining} of {count} complete!")
 
